@@ -14,7 +14,6 @@ function getQuestion() {
     } else {
         let percent =  (currentQuestion / questions.length) * 100;
         document.getElementById("progress-bar").style.width = (percent + 20) + "%";
-        
         document.getElementById("questiontext").innerHTML = questions[currentQuestion].question;
         document.getElementById("current-count").innerHTML = "0" + (currentQuestion + 1);
         for (let i = 0; i < questions[currentQuestion].answers.length; i++) {
@@ -65,15 +64,13 @@ function nextQuestion() {
 function finishQuiz() {
     document.getElementById("quiz-wrapper").classList.add("blur");
     document.getElementById("completion-message").style.display = "block";
-    
     document.getElementById("all-qst").innerHTML = questions.length;
     document.getElementById("correct-qst").innerHTML = correctAnswers;
-
     setTimeout(() => {
         document.getElementById("completion-message").style.display = "none";
         document.getElementById("quiz-wrapper").classList.remove("blur");
         getQuestion();
         correctAnswers = 0;
         currentQuestion = 0;
-    }, 3000);
+    }, 2000);
 }
