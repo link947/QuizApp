@@ -12,7 +12,7 @@ function getQuestion() {
     if (currentQuestion >= questions.length) {
         finishQuiz();
     } else {
-        let percent =  (currentQuestion / questions.length) * 100;
+        let percent = (currentQuestion / questions.length) * 100;
         document.getElementById("progress-bar").style.width = (percent + 20) + "%";
         document.getElementById("questiontext").innerHTML = questions[currentQuestion].question;
         document.getElementById("current-count").innerHTML = "0" + (currentQuestion + 1);
@@ -40,6 +40,14 @@ function selectAnswer(selection) {
         handleIncorrectAnswer(selection, correctAnswerIndex);
     }
     document.getElementById("next-btn").disabled = false;
+    disableAnswers();
+}
+
+function disableAnswers() {
+    let answerButtons = document.querySelectorAll(".answer");
+    for (let i = 0; i < answerButtons.length; i++) {
+        answerButtons[i].disabled = true;
+    }
 }
 
 function handleCorrectAnswer(selection) {
@@ -57,7 +65,9 @@ function handleIncorrectAnswer(selection, correctAnswerIndex) {
 }
 
 function resetAnswers() {
+    let answerButtons = document.querySelectorAll(".answer");
     for (let i = 0; i < 4; i++) {
+        answerButtons[i].disabled = false;
         document.getElementById("answer_" + i).classList.remove("success", "error");
     }
 }
