@@ -1,5 +1,7 @@
 let currentQuestion = 0;
 let correctAnswers = 0;
+let audioSuccess = new Audio("./assets/success.wav");
+let audioError = new Audio("./assets/error.wav");
 
 function init() {
     document.getElementById("all-count").innerHTML = questions.length;
@@ -34,11 +36,15 @@ function selectAnswer(selection) {
     let checkCorrect = questions[currentQuestion].answers[selection].isCorrect;
     let correctAnswerIndex = findCorrectAnswerIndex(question);
     if (checkCorrect) {
+        audioSuccess.currentTime = 0;
         document.getElementById("answer_" + selection).classList.add("success");
+        audioSuccess.play();
         correctAnswers++;
     } else {
+        audioError.currentTime = 0;
         document.getElementById("answer_" + selection).classList.add("error");
         document.getElementById("answer_" + correctAnswerIndex).classList.add("success");
+        audioError.play();
     }
     document.getElementById("next-btn").disabled = false;
 }
