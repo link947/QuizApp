@@ -35,17 +35,25 @@ function selectAnswer(selection) {
     let checkCorrect = questions[currentQuestion].answers[selection].isCorrect;
     let correctAnswerIndex = findCorrectAnswerIndex(question);
     if (checkCorrect) {
-        audioSuccess.currentTime = 0;
-        document.getElementById("answer_" + selection).classList.add("success");
-        audioSuccess.play();
-        correctAnswers++;
+        handleCorrectAnswer(selection);
     } else {
-        audioError.currentTime = 0;
-        document.getElementById("answer_" + selection).classList.add("error");
-        document.getElementById("answer_" + correctAnswerIndex).classList.add("success");
-        audioError.play();
+        handleIncorrectAnswer(selection, correctAnswerIndex);
     }
     document.getElementById("next-btn").disabled = false;
+}
+
+function handleCorrectAnswer(selection) {
+    audioSuccess.currentTime = 0;
+    document.getElementById("answer_" + selection).classList.add("success");
+    audioSuccess.play();
+    correctAnswers++;
+}
+
+function handleIncorrectAnswer(selection, correctAnswerIndex) {
+    audioError.currentTime = 0;
+    document.getElementById("answer_" + selection).classList.add("error");
+    document.getElementById("answer_" + correctAnswerIndex).classList.add("success");
+    audioError.play();
 }
 
 function resetAnswers() {
@@ -72,5 +80,5 @@ function finishQuiz() {
         getQuestion();
         correctAnswers = 0;
         currentQuestion = 0;
-    }, 2000);
+    }, 1000);
 }
