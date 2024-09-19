@@ -15,6 +15,7 @@
 
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <script src="db.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,41 +24,42 @@
         rel="stylesheet">
 </head>
 
-<body>
+<body onload="init()">
     <div class="outer-radius br-25">
         <main class="container vh-100">
-            <div class="quiz-wrapper">
+            <div class="quiz-wrapper" id="quiz-wrapper">
                 <div class="header-info">
                     <span class="acc-clr">Frage</span>
-                    <span class="counter br-25"><span class="current-count">01</span>/05</span>
+                    <span class="counter br-25"><span class="current-count" id="current-count"></span>/0<span id="all-count"></span></span>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar" id="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                 <div class="quiz-header br-25">
-                    <h4 class="question" id="question">Was ist der richtige Weg, um eine Funktion in JavaScript zu
-                        definieren?</h4>
+                    <h4 class="question" id="questiontext"></h4>
                 </div>
                 <div class="header-info">
                     <span class="acc-clr">Wähle eine Antwort</span>
                 </div>
-                <div class="answer br-25 mb-2">
-                    <p>function meineFunktion() {}</p>
+                <div class="answer br-25 mb-2" id="answer_0" onclick="selectAnswer(0)">
                 </div>
-                <div class="answer br-25 mb-2">
-                    <p>def meineFunktion() {}</p>
+                <div class="answer br-25 mb-2" id="answer_1" onclick="selectAnswer(1)">
                 </div>
-                <div class="answer br-25 mb-2">
-                    <p>create function meineFunktion() {}</p>
+                <div class="answer br-25 mb-2" id="answer_2" onclick="selectAnswer(2)">
                 </div>
-                <div class="answer br-25">
-                    <p>func meineFunktion() {}</p>
+                <div class="answer br-25" id="answer_3" onclick="selectAnswer(3)">
                 </div>
-                <div class="next-btn br-25">
-                    <span></span>
+                <button class="next-btn br-25" id="next-btn" onclick="nextQuestion()" disabled>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrow-right-short"
                         viewBox="0 0 16 16">
                         <path fill-rule="evenodd"
                             d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8" />
                     </svg>
-                </div>
+                </button>
+            </div>
+            <div id="completion-message" class="completion-message">
+                <span id="correct-qst">XX</span> von <span id="all-qst"></span> richtig beantwortet
+            </div>
         </main>
     </div>
 </body>

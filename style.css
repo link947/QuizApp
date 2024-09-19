@@ -2,10 +2,8 @@
     --main-bg-color: #b6b6b6;
     --secondary-bg-color:#ffffff50;
     --accent-color: #f9fc50;
-}
-
-.br-25{
-    border-radius:25px;
+    --success-color: #28a7464b;
+    --error-color: #dc35464b;
 }
 
 body{
@@ -46,7 +44,16 @@ h4, p{
     align-items: center;
     color:#fff;
     font-size:20px;
+    margin-bottom:10px;
+}
+
+.progress{
     margin-bottom:20px;
+    background: var(--secondary-bg-color);
+    border-radius: 20px;
+}
+.progress-bar{
+    background:#fff;
 }
 
 .counter{
@@ -57,10 +64,6 @@ h4, p{
 
 .current-count{
     color:#fff;
-}
-
-.acc-clr{
-    color: var(--accent-color);
 }
 
 .answer {
@@ -82,8 +85,13 @@ h4, p{
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
     transition: background-color 200ms;
+    width:100%;
+    border:none;
+}
+
+.next-btn:disabled{
+    opacity: .5;
 }
 
 .next-btn:hover{
@@ -91,6 +99,63 @@ h4, p{
     color: #000;
 }
 
+.next-btn:disabled:hover{
+    background: #000;
+    color: var(--accent-color);
+}
+
 .bi-arrow-right-short{
     height:32px;
+}
+
+
+.br-25{
+    border-radius:25px;
+}
+
+.acc-clr{
+    color: var(--accent-color);
+}
+
+.selected{
+    background: #fff;
+}
+
+.success, .success:hover{
+    background:var(--accent-color)
+}
+
+
+.error, .error:hover{
+    background: #000;
+    color: var(--accent-color);
+}
+
+
+.quiz-wrapper {
+    position: relative;
+}
+
+.completion-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 2px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    display: none; /* Hide by default */
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.blur {
+    filter: blur(20px);
+    pointer-events: none; /* Disable interaction */
+}
+
+.completion-message{
+    border:none;
+    border-radius:25px;
+    padding:30px;
 }
